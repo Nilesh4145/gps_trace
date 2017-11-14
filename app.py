@@ -9,7 +9,7 @@ def home():
 	return render_template('index.html') # 'Project running'
 
 
-@app.route('/save', methods=['POST'])
+@app.route('/map', methods=['POST'])
 def process_view():
 	start = request.form['start']
 	finish = request.form['finish']
