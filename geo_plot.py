@@ -2,6 +2,7 @@ import numpy
 import gmplot
 import datetime
 
+
 ############# Create time-sorted numpy array of gps trace ##################
 trace_raw = numpy.genfromtxt('gps_trace.csv', delimiter='\t', dtype=str)
 trace = []
@@ -31,11 +32,11 @@ def right_index(a, arr):
 		index += 1
 ############################################################################
 
-start_index = left_index("01:00:00", sorted_trace[:, 4])
-finish_index = right_index("02:30:00", sorted_trace[:, 4])
 
-gmap = gmplot.GoogleMapPlotter(sorted_trace[0][0], sorted_trace[0][1], 50)
-gmap.plot(sorted_trace[:, 0][start_index:finish_index].astype(numpy.float), 
-	sorted_trace[:, 1][start_index:finish_index].astype(numpy.float), '#FF6666', edge_width=10)
-
-gmap.draw("map.html")
+def process(start, finish):
+	start_index = left_index(start, sorted_trace[:, 4])
+	finish_index = right_index(finish, sorted_trace[:, 4])
+	gmap = gmplot.GoogleMapPlotter(sorted_trace[0][0], sorted_trace[0][1], 50, apikey='AIzaSyCIZHxg9W7R4dD9_mYWi4rj1PdjDS6tEW4')
+	gmap.plot(sorted_trace[:, 0][start_index:finish_index].astype(numpy.float), 
+		sorted_trace[:, 1][start_index:finish_index].astype(numpy.float), '#FF6666', edge_width=10)
+	gmap.draw("templates/map.html")
