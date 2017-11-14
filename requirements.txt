@@ -1,3 +1,5 @@
 Flask
 gmplot
 numpy
+# run on server
+gunicorn==19.7.1
