@@ -15,3 +15,7 @@ def process_view():
 	finish = request.form['finish']
 	process(start, finish)
 	return render_template('map.html')
+
+
+if __name__ == '__main__':
+	app.run()
